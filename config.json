@@ -15,7 +15,8 @@
     "forwardSources": [{
         "type":"CoolQ",
             "group_id": 114514,
-            "forwardTo": "penguin_1"
+            "forwardTo": "penguin_1",
+            "doNotSend":false
         }
     ],
     "penguins": [{

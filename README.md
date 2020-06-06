@@ -14,7 +14,7 @@
  
  注意！由于历史遗留原因，根目录下会有一个config.json。除非你在npm run build这一步前修改它，否则是没有用的。config.json要修改dist下的config.json。
  ## 关于config.json内的配置：
- ```
+ ```TypeScript
 /**
  * config.json的结构定义
  *
@@ -32,7 +32,8 @@ export interface ConfigType {
     forwardSources: [{
         type: string,
         group_id: number,
-        forwardTo: string
+        forwardTo: string,
+        doNotSend:boolean
     }
     ],
     penguins: Array<PenguinProps>,

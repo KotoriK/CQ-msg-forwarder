@@ -11,9 +11,12 @@ import { MsgJson } from '../proto/MsgJson';
  */
 export class CoolQForwardSource extends IForwardSource {
     groupId: number
-    constructor(groupId) {
+    constructor(groupId:number,doNotSend:boolean) {
         super()
         this.groupId = groupId
+        this.send=(msg)=>{
+            
+        }
     }
     sendReverse(msg: MsgJson.IMsg) {
         if (msg.prefix == "!reserved!") {

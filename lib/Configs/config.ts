@@ -56,7 +56,7 @@ function initForwardSources() {
         switch (i.type) {
             case 'CoolQ':
                 if (i.group_id) {
-                    let source = new CoolQForwardSource(i.group_id)
+                    let source = new CoolQForwardSource(i.group_id,i.doNotSend)
                     CoolQSourceMap.set(i.group_id, source)
                     source.addPenguin(r)
                     r.addSource(source)
@@ -100,7 +100,8 @@ export interface ConfigType {
     forwardSources: [{
         type: string,
         group_id: number,
-        forwardTo: string
+        forwardTo: string,
+        doNotSend:boolean
     }
     ],
     penguins: Array<PenguinProps>,
