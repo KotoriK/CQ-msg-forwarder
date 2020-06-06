@@ -1,0 +1,39 @@
+{
+    "webSocket": {
+        "host": "127.0.0.1",
+        "port": 6700,
+        "enableAPI": true,
+        "enableEvent": true,
+        "access_token": "",
+        "reconnection": true,
+        "reconnectionAttempts": 10,
+        "reconnectionDelay": 5000
+    },
+    "adminId":114514,
+    "isPositivly": false,
+    "listenPort":8000,
+    "forwardSources": [{
+        "type":"CoolQ",
+            "group_id": 114514,
+            "forwardTo": "penguin_1"
+        }
+    ],
+    "penguins": [{
+        "name": "penguin_1",
+        "targetAddress": "localhost",
+        "useDnsLookup":true,
+        "dnsServer":[],
+        "useIpv6":false,
+        "targetAddressAlias":"",
+        "targetPort": 8000,
+        "usingSSL": false,
+        "sslOptions": {
+
+        },
+        "timeoutInMinute":0.2
+    }],
+    "penguinRetryOpt":{
+        "times":0,
+        "delay":0
+    }
+}

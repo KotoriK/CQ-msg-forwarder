@@ -1,0 +1,26 @@
+syntax="proto3";
+message Msg{
+    string prefix = 1;
+    repeated string contents = 2;
+    message Appendix{
+        enum AppendixType {
+            TAG = 0;
+            ANONYMOUS = 1;
+            AT = 2;
+            B_FACE = 3;
+            CUSTOM_MUSIC = 4;
+            EMOJI = 6;
+            FACE = 7;
+            IMAGE = 8;
+            MUSIC = 9;
+            RECORD = 10;
+            RPS = 11;
+            S_FACE = 12;
+            SHARE = 13;
+            TEXT = 14;
+        }
+        AppendixType type = 1;
+        string data = 2;
+    }
+   repeated Appendix appendix = 3;
+}

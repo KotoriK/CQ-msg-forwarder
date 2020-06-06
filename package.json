@@ -1,0 +1,36 @@
+{
+  "name": "cq-msg-forwarder",
+  "version": "1.0.0",
+  "description": "Forward QQ msg based on CoolQ",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon --inspect dist/index.js",
+    "build": "tsc",
+    "protobuf": " pbjs -t static-module -w commonjs -o msg-compiled.js ./lib/proto/msg.proto  && pbts -o msg-compiled.d.ts msg-compiled.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/"
+  },
+  "keywords": [
+    "QQ"
+  ],
+  "author": "KotoriK",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "@nelts/tcp-stick": "^1.0.0",
+    "cq-websocket": "^2.1.0",
+    "image-size": "^0.8.3",
+    "is-arguments": "^1.0.4",
+    "lodash": "^4.17.15",
+    "protobufjs": "^6.8.8"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^13.7.2",
+    "nodemon": "^2.0.2",
+    "parcel": "^1.12.4",
+    "typescript": "^3.7.5"
+  }
+}

@@ -1,0 +1,603 @@
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
+"use strict";
+
+var $protobuf = require("protobufjs/minimal");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+
+// Exported root namespace
+var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+
+$root.Msg = (function() {
+
+    /**
+     * Properties of a Msg.
+     * @exports IMsg
+     * @interface IMsg
+     * @property {string|null} [prefix] Msg prefix
+     * @property {Array.<string>|null} [contents] Msg contents
+     * @property {Array.<Msg.IAppendix>|null} [appendix] Msg appendix
+     */
+
+    /**
+     * Constructs a new Msg.
+     * @exports Msg
+     * @classdesc Represents a Msg.
+     * @implements IMsg
+     * @constructor
+     * @param {IMsg=} [properties] Properties to set
+     */
+    function Msg(properties) {
+        this.contents = [];
+        this.appendix = [];
+        if (properties)
+            for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Msg prefix.
+     * @member {string} prefix
+     * @memberof Msg
+     * @instance
+     */
+    Msg.prototype.prefix = "";
+
+    /**
+     * Msg contents.
+     * @member {Array.<string>} contents
+     * @memberof Msg
+     * @instance
+     */
+    Msg.prototype.contents = $util.emptyArray;
+
+    /**
+     * Msg appendix.
+     * @member {Array.<Msg.IAppendix>} appendix
+     * @memberof Msg
+     * @instance
+     */
+    Msg.prototype.appendix = $util.emptyArray;
+
+    /**
+     * Creates a new Msg instance using the specified properties.
+     * @function create
+     * @memberof Msg
+     * @static
+     * @param {IMsg=} [properties] Properties to set
+     * @returns {Msg} Msg instance
+     */
+    Msg.create = function create(properties) {
+        return new Msg(properties);
+    };
+
+    /**
+     * Encodes the specified Msg message. Does not implicitly {@link Msg.verify|verify} messages.
+     * @function encode
+     * @memberof Msg
+     * @static
+     * @param {IMsg} message Msg message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Msg.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.prefix != null && message.hasOwnProperty("prefix"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.prefix);
+        if (message.contents != null && message.contents.length)
+            for (var i = 0; i < message.contents.length; ++i)
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.contents[i]);
+        if (message.appendix != null && message.appendix.length)
+            for (var i = 0; i < message.appendix.length; ++i)
+                $root.Msg.Appendix.encode(message.appendix[i], writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Msg message, length delimited. Does not implicitly {@link Msg.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Msg
+     * @static
+     * @param {IMsg} message Msg message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Msg.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Msg message from the specified reader or buffer.
+     * @function decode
+     * @memberof Msg
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Msg} Msg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Msg.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Msg();
+        while (reader.pos < end) {
+            var tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.prefix = reader.string();
+                break;
+            case 2:
+                if (!(message.contents && message.contents.length))
+                    message.contents = [];
+                message.contents.push(reader.string());
+                break;
+            case 3:
+                if (!(message.appendix && message.appendix.length))
+                    message.appendix = [];
+                message.appendix.push($root.Msg.Appendix.decode(reader, reader.uint32()));
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Msg message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Msg
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Msg} Msg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Msg.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Msg message.
+     * @function verify
+     * @memberof Msg
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Msg.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.prefix != null && message.hasOwnProperty("prefix"))
+            if (!$util.isString(message.prefix))
+                return "prefix: string expected";
+        if (message.contents != null && message.hasOwnProperty("contents")) {
+            if (!Array.isArray(message.contents))
+                return "contents: array expected";
+            for (var i = 0; i < message.contents.length; ++i)
+                if (!$util.isString(message.contents[i]))
+                    return "contents: string[] expected";
+        }
+        if (message.appendix != null && message.hasOwnProperty("appendix")) {
+            if (!Array.isArray(message.appendix))
+                return "appendix: array expected";
+            for (var i = 0; i < message.appendix.length; ++i) {
+                var error = $root.Msg.Appendix.verify(message.appendix[i]);
+                if (error)
+                    return "appendix." + error;
+            }
+        }
+        return null;
+    };
+
+    /**
+     * Creates a Msg message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Msg
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Msg} Msg
+     */
+    Msg.fromObject = function fromObject(object) {
+        if (object instanceof $root.Msg)
+            return object;
+        var message = new $root.Msg();
+        if (object.prefix != null)
+            message.prefix = String(object.prefix);
+        if (object.contents) {
+            if (!Array.isArray(object.contents))
+                throw TypeError(".Msg.contents: array expected");
+            message.contents = [];
+            for (var i = 0; i < object.contents.length; ++i)
+                message.contents[i] = String(object.contents[i]);
+        }
+        if (object.appendix) {
+            if (!Array.isArray(object.appendix))
+                throw TypeError(".Msg.appendix: array expected");
+            message.appendix = [];
+            for (var i = 0; i < object.appendix.length; ++i) {
+                if (typeof object.appendix[i] !== "object")
+                    throw TypeError(".Msg.appendix: object expected");
+                message.appendix[i] = $root.Msg.Appendix.fromObject(object.appendix[i]);
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Msg message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Msg
+     * @static
+     * @param {Msg} message Msg
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Msg.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        var object = {};
+        if (options.arrays || options.defaults) {
+            object.contents = [];
+            object.appendix = [];
+        }
+        if (options.defaults)
+            object.prefix = "";
+        if (message.prefix != null && message.hasOwnProperty("prefix"))
+            object.prefix = message.prefix;
+        if (message.contents && message.contents.length) {
+            object.contents = [];
+            for (var j = 0; j < message.contents.length; ++j)
+                object.contents[j] = message.contents[j];
+        }
+        if (message.appendix && message.appendix.length) {
+            object.appendix = [];
+            for (var j = 0; j < message.appendix.length; ++j)
+                object.appendix[j] = $root.Msg.Appendix.toObject(message.appendix[j], options);
+        }
+        return object;
+    };
+
+    /**
+     * Converts this Msg to JSON.
+     * @function toJSON
+     * @memberof Msg
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Msg.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    Msg.Appendix = (function() {
+
+        /**
+         * Properties of an Appendix.
+         * @memberof Msg
+         * @interface IAppendix
+         * @property {Msg.Appendix.AppendixType|null} [type] Appendix type
+         * @property {string|null} [data] Appendix data
+         */
+
+        /**
+         * Constructs a new Appendix.
+         * @memberof Msg
+         * @classdesc Represents an Appendix.
+         * @implements IAppendix
+         * @constructor
+         * @param {Msg.IAppendix=} [properties] Properties to set
+         */
+        function Appendix(properties) {
+            if (properties)
+                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * Appendix type.
+         * @member {Msg.Appendix.AppendixType} type
+         * @memberof Msg.Appendix
+         * @instance
+         */
+        Appendix.prototype.type = 0;
+
+        /**
+         * Appendix data.
+         * @member {string} data
+         * @memberof Msg.Appendix
+         * @instance
+         */
+        Appendix.prototype.data = "";
+
+        /**
+         * Creates a new Appendix instance using the specified properties.
+         * @function create
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Msg.IAppendix=} [properties] Properties to set
+         * @returns {Msg.Appendix} Appendix instance
+         */
+        Appendix.create = function create(properties) {
+            return new Appendix(properties);
+        };
+
+        /**
+         * Encodes the specified Appendix message. Does not implicitly {@link Msg.Appendix.verify|verify} messages.
+         * @function encode
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Msg.IAppendix} message Appendix message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Appendix.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.type != null && message.hasOwnProperty("type"))
+                writer.uint32(/* id 1, wireType 0 =*/8).int32(message.type);
+            if (message.data != null && message.hasOwnProperty("data"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.data);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Appendix message, length delimited. Does not implicitly {@link Msg.Appendix.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Msg.IAppendix} message Appendix message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Appendix.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an Appendix message from the specified reader or buffer.
+         * @function decode
+         * @memberof Msg.Appendix
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {Msg.Appendix} Appendix
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Appendix.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.Msg.Appendix();
+            while (reader.pos < end) {
+                var tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.type = reader.int32();
+                    break;
+                case 2:
+                    message.data = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an Appendix message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof Msg.Appendix
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {Msg.Appendix} Appendix
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Appendix.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an Appendix message.
+         * @function verify
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Appendix.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.type != null && message.hasOwnProperty("type"))
+                switch (message.type) {
+                default:
+                    return "type: enum value expected";
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                    break;
+                }
+            if (message.data != null && message.hasOwnProperty("data"))
+                if (!$util.isString(message.data))
+                    return "data: string expected";
+            return null;
+        };
+
+        /**
+         * Creates an Appendix message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {Msg.Appendix} Appendix
+         */
+        Appendix.fromObject = function fromObject(object) {
+            if (object instanceof $root.Msg.Appendix)
+                return object;
+            var message = new $root.Msg.Appendix();
+            switch (object.type) {
+            case "TAG":
+            case 0:
+                message.type = 0;
+                break;
+            case "ANONYMOUS":
+            case 1:
+                message.type = 1;
+                break;
+            case "AT":
+            case 2:
+                message.type = 2;
+                break;
+            case "B_FACE":
+            case 3:
+                message.type = 3;
+                break;
+            case "CUSTOM_MUSIC":
+            case 4:
+                message.type = 4;
+                break;
+            case "EMOJI":
+            case 6:
+                message.type = 6;
+                break;
+            case "FACE":
+            case 7:
+                message.type = 7;
+                break;
+            case "IMAGE":
+            case 8:
+                message.type = 8;
+                break;
+            case "MUSIC":
+            case 9:
+                message.type = 9;
+                break;
+            case "RECORD":
+            case 10:
+                message.type = 10;
+                break;
+            case "RPS":
+            case 11:
+                message.type = 11;
+                break;
+            case "S_FACE":
+            case 12:
+                message.type = 12;
+                break;
+            case "SHARE":
+            case 13:
+                message.type = 13;
+                break;
+            case "TEXT":
+            case 14:
+                message.type = 14;
+                break;
+            }
+            if (object.data != null)
+                message.data = String(object.data);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an Appendix message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof Msg.Appendix
+         * @static
+         * @param {Msg.Appendix} message Appendix
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Appendix.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            var object = {};
+            if (options.defaults) {
+                object.type = options.enums === String ? "TAG" : 0;
+                object.data = "";
+            }
+            if (message.type != null && message.hasOwnProperty("type"))
+                object.type = options.enums === String ? $root.Msg.Appendix.AppendixType[message.type] : message.type;
+            if (message.data != null && message.hasOwnProperty("data"))
+                object.data = message.data;
+            return object;
+        };
+
+        /**
+         * Converts this Appendix to JSON.
+         * @function toJSON
+         * @memberof Msg.Appendix
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Appendix.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * AppendixType enum.
+         * @name Msg.Appendix.AppendixType
+         * @enum {string}
+         * @property {number} TAG=0 TAG value
+         * @property {number} ANONYMOUS=1 ANONYMOUS value
+         * @property {number} AT=2 AT value
+         * @property {number} B_FACE=3 B_FACE value
+         * @property {number} CUSTOM_MUSIC=4 CUSTOM_MUSIC value
+         * @property {number} EMOJI=6 EMOJI value
+         * @property {number} FACE=7 FACE value
+         * @property {number} IMAGE=8 IMAGE value
+         * @property {number} MUSIC=9 MUSIC value
+         * @property {number} RECORD=10 RECORD value
+         * @property {number} RPS=11 RPS value
+         * @property {number} S_FACE=12 S_FACE value
+         * @property {number} SHARE=13 SHARE value
+         * @property {number} TEXT=14 TEXT value
+         */
+        Appendix.AppendixType = (function() {
+            var valuesById = {}, values = Object.create(valuesById);
+            values[valuesById[0] = "TAG"] = 0;
+            values[valuesById[1] = "ANONYMOUS"] = 1;
+            values[valuesById[2] = "AT"] = 2;
+            values[valuesById[3] = "B_FACE"] = 3;
+            values[valuesById[4] = "CUSTOM_MUSIC"] = 4;
+            values[valuesById[6] = "EMOJI"] = 6;
+            values[valuesById[7] = "FACE"] = 7;
+            values[valuesById[8] = "IMAGE"] = 8;
+            values[valuesById[9] = "MUSIC"] = 9;
+            values[valuesById[10] = "RECORD"] = 10;
+            values[valuesById[11] = "RPS"] = 11;
+            values[valuesById[12] = "S_FACE"] = 12;
+            values[valuesById[13] = "SHARE"] = 13;
+            values[valuesById[14] = "TEXT"] = 14;
+            return values;
+        })();
+
+        return Appendix;
+    })();
+
+    return Msg;
+})();
+
+module.exports = $root;

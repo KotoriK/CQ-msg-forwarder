@@ -1,0 +1,223 @@
+import * as $protobuf from "protobufjs";
+/** Properties of a Msg. */
+export interface IMsg {
+
+    /** Msg prefix */
+    prefix?: (string|null);
+
+    /** Msg contents */
+    contents?: (string[]|null);
+
+    /** Msg appendix */
+    appendix?: (Msg.IAppendix[]|null);
+}
+
+/** Represents a Msg. */
+export class Msg implements IMsg {
+
+    /**
+     * Constructs a new Msg.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IMsg);
+
+    /** Msg prefix. */
+    public prefix: string;
+
+    /** Msg contents. */
+    public contents: Array<string>;
+
+    /** Msg appendix. */
+    public appendix: Array<Msg.IAppendix>;
+
+    /**
+     * Creates a new Msg instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Msg instance
+     */
+    public static create(properties?: IMsg): Msg;
+
+    /**
+     * Encodes the specified Msg message. Does not implicitly {@link Msg.verify|verify} messages.
+     * @param message Msg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Msg message, length delimited. Does not implicitly {@link Msg.verify|verify} messages.
+     * @param message Msg message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IMsg, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a Msg message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Msg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Msg;
+
+    /**
+     * Decodes a Msg message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Msg
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Msg;
+
+    /**
+     * Verifies a Msg message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: string|any): (string|null);
+
+    /**
+     * Creates a Msg message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Msg
+     */
+    public static fromObject(object: Object): Msg;
+
+    /**
+     * Creates a plain object from a Msg message. Also converts values to other types if specified.
+     * @param message Msg
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: Msg, options?: $protobuf.IConversionOptions): Object;
+
+    /**
+     * Converts this Msg to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): string;
+}
+
+export namespace Msg {
+    namespace Appendix {
+
+        /** AppendixType enum. */
+        enum AppendixType {
+            TAG = 0,
+            ANONYMOUS = 1,
+            AT = 2,
+            B_FACE = 3,
+            CUSTOM_MUSIC = 4,
+            EMOJI = 6,
+            FACE = 7,
+            IMAGE = 8,
+            MUSIC = 9,
+            RECORD = 10,
+            RPS = 11,
+            S_FACE = 12,
+            SHARE = 13,
+            TEXT = 14
+        }
+    }
+
+    /** Properties of an Appendix. */
+    interface IAppendix {
+
+        /** Appendix type */
+        type?: (Msg.Appendix.AppendixType|null);
+
+        /** Appendix data */
+        data?: (string|null);
+    }
+
+    /** Represents an Appendix. */
+    class Appendix implements IAppendix {
+
+        /**
+         * Constructs a new Appendix.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: Msg.IAppendix);
+
+        /** Appendix type. */
+        public type: Msg.Appendix.AppendixType;
+
+        /** Appendix data. */
+        public data: string;
+
+        /**
+         * Creates a new Appendix instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns Appendix instance
+         */
+        public static create(properties?: Msg.IAppendix): Msg.Appendix;
+
+        /**
+         * Encodes the specified Appendix message. Does not implicitly {@link Msg.Appendix.verify|verify} messages.
+         * @param message Appendix message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: Msg.IAppendix, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified Appendix message, length delimited. Does not implicitly {@link Msg.Appendix.verify|verify} messages.
+         * @param message Appendix message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: Msg.IAppendix, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes an Appendix message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns Appendix
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Msg.Appendix;
+
+        /**
+         * Decodes an Appendix message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns Appendix
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Msg.Appendix;
+
+        /**
+         * Verifies an Appendix message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: string): (string|null);
+
+        /**
+         * Creates an Appendix message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns Appendix
+         */
+        public static fromObject(object: string): Msg.Appendix;
+
+        /**
+         * Creates a plain object from an Appendix message. Also converts values to other types if specified.
+         * @param message Appendix
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: Msg.Appendix, options?: $protobuf.IConversionOptions): string;
+
+        /**
+         * Converts this Appendix to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): string;
+    }
+
+    
+}
