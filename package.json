@@ -30,7 +30,6 @@
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.7.2",
     "nodemon": "^2.0.2",
-    "parcel": "^1.12.4",
     "typescript": "^3.7.5"
   }
 }
